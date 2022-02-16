@@ -9,19 +9,18 @@ $user->insertCreditCard($c); -->
 <?php 
 
     //nuova classse, gli elementi sono protetti quuindi vanno richiamati con i get e set
-    class Shop
+    class Item
     {   
         protected $name;
-        protected $items;
-        protected $users;
-        protected $prices;
+        protected $user;
+        protected $price;
 
 
         //costruttore con 3 elementi passati
-        public function __construct($name, $items, $prices) {
+        public function __construct($name, $kind, $price) {
             $this->name = $name;
-            $this->itemes = $items;
-            $this->prices = $prices;
+            $this->kind = $kind;
+            $this->price = $price;
         }
 
         /**
@@ -45,51 +44,31 @@ $user->insertCreditCard($c); -->
         }
 
         /**
-         * Get the value of items
+         * Get the value of kind
          */ 
-        public function getItems()
+        public function getKind()
         {
-                return $this->items;
+                return $this->kind;
         }
 
         /**
-         * Set the value of items
+         * Set the value of kind
          *
          * @return  self
          */ 
-        public function setItems($items)
+        public function setKind($kind)
         {
-                $this->items = $items;
+                $this->kind = $kind;
 
                 return $this;
         }
 
         /**
-         * Get the value of users
+         * Get the value of price
          */ 
-        public function getUsers()
+        public function getPrice()
         {
-                return $this->users;
-        }
-
-        /**
-         * Set the value of users
-         *
-         * @return  self
-         */ 
-        public function setUsers($users)
-        {
-                $this->users = $users;
-
-                return $this;
-        }
-
-        /**
-         * Get the value of prices
-         */ 
-        public function getPrices()
-        {
-                return $this->prices;
+                return $this->price;
         }
 
         /**
@@ -97,11 +76,14 @@ $user->insertCreditCard($c); -->
          *
          * @return  self
          */ 
-        public function setPrices($prices)
+        //il prezzo deve essere compreso tra £ 0,99 e £ 99,99
+        public function setPrice($price)
         {
-                $this->prices = $prices;
-
-                return $this;
+            if($price < 0.99 ){
+                throw new Exception('il prezzo deve essere compreso tra £ 0,99 e £ 99,99');    
+            }
+            $this->prices = $price;
+            return $this;        
         }
     }
 
