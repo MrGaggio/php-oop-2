@@ -4,12 +4,13 @@
     require_once __DIR__ . '/classes/item.php';
 
 
-    //Crea un nuovo oggetto in qui vengono passati i 3 parametri richiesti dal constructor di Item.php
-    $dish = new Item('dish', 'glass', 1000);
+    
+        //dentro al try ci si mette la classe con il link dell'eccezione nel catch e in questo modo stampa l'errore con echo
+    try {
+        //Crea un nuovo oggetto in qui vengono passati i 3 parametri richiesti dal constructor di Item.php    
+        $dish = new Item('dish', 'glass', 200);
 
-    // prova di stampa del nuovo oggetto creato in cui viene richiamato nome, tipo e prezzo
-    echo $dish->getName();
-    echo $dish->getPrice();
-
-
+        } catch (\Exception $error) {
+            echo $error->getMessage();
+        }
 ?>

@@ -73,7 +73,7 @@
         //il prezzo deve essere compreso tra £ 1 e £ 99
         public function setPrice($price)
         {
-            if($price < 1 && $price > 99){
+            if($price > 99 || $price < 1){
                 throw new Exception('il prezzo deve essere compreso tra £ 1 e £ 99');   
             }
             $this->price = $price;
